@@ -17,22 +17,22 @@ jobs:
     timeout-minutes: 15
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - run: npm install
+      - run: npm install
 
-    - run: npm run build
-      env:
-        NODE_ENV: production
+      - run: npm run build
+        env:
+          NODE_ENV: production
 
-    - name: Run project locally
-      run: |
-        npm install serve
-        $(npm bin)/serve dist -s -p 8080 &
+      - name: Run project locally
+        run: |
+          npm install serve
+          $(npm bin)/serve dist -s -p 8080 &
 
-    - name: Run tests
-      uses: cypress-io/github-action@v2
-      with:
-        working-directory: dashboard
-        browser: chrome
-        headless: true
+      - name: Run tests
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: dashboard
+          browser: chrome
+          headless: true
